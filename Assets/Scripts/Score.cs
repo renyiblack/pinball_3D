@@ -9,6 +9,23 @@ public class Score : MonoBehaviour
     private int currentLifes = 3;
     public Text scoreText;
 
+    public static Score Instance { get; private set; }
+
+
+    private void Awake() 
+    { 
+        if (Instance != null && Instance != this) 
+        { 
+            Destroy(this); 
+        } 
+        else 
+        { 
+            Instance = this; 
+        } 
+    }
+
+    
+
     void Start()
     {
         currentScore = 0f;

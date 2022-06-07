@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Board : MonoBehaviour
 {
-    public Score score;
-
     public List<Bouncer> bouncers;
     public List<Prism> prims;
     public List<Bonus> bonuses;
     public GameObject ball;
+    public Wall wall;
 
     int lifes = 3;
 
@@ -33,10 +32,6 @@ public class Board : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-
-    }
 
     void Update()
     {
@@ -58,9 +53,10 @@ public class Board : MonoBehaviour
         if (hole.GetShouldRemoveBall())
         {
             RemoveBall();
+            wall.open();
             hole.reset();
         }
 
-        score.UpdateScore(newScore, lifes);
+        Score.Instance.UpdateScore(newScore, lifes);
     }
 }
